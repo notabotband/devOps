@@ -6,7 +6,7 @@
   missingok
   size 10M
   postrotate
-    date >> /opt/student_rotate.log
+    echo "$(date):frontend rotate" >> student_rotate.log
   endscript
 }
 
@@ -18,6 +18,6 @@
   missingok
   size 10M
   postrotate
-    date >> /opt/student_rotate.log
+    echo "$(date):backend rotate" >> student_rotate.log
   endscript
 }
