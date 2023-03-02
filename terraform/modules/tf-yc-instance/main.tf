@@ -1,5 +1,7 @@
 resource "yandex_compute_instance" "vm-1" {
   name = var.name
+  platform_id = "standard-v1"
+  zone        = "ru-central1-a"
 
   resources {
     cores = 2
@@ -17,7 +19,11 @@ resource "yandex_compute_instance" "vm-1" {
     nat = false
   }
 
+  scheduling_policy {
+    preemptible = true
+  }
+
   metadata = {
-    user-data = "${file("../../../scripts/add-ssh-web-app.yaml")}"
+    user-data = "${file("../scripts/add-ssh-web-app.yaml")}"
   }
 }
