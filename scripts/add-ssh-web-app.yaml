@@ -1,7 +1,3 @@
-groups:
-  - ubuntu: [root,sys]
-  - ansible
-
 users:
   - default
   - name: ansible
