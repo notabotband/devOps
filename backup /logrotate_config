@@ -1,0 +1,23 @@
+/opt/log/sausage-store-frontend.log {
+  rotate 3
+  create
+  hourly
+  delaycompress
+  missingok
+  size 10M
+  postrotate
+    echo "$(date):frontend rotate" >> student_rotate.log
+  endscript
+}
+
+/opt/log/sausage-store-backend.log {
+  rotate 3
+  create
+  hourly
+  delaycompress
+  missingok
+  size 10M
+  postrotate
+    echo "$(date):backend rotate" >> student_rotate.log
+  endscript
+}
