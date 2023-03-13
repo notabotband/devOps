@@ -1,5 +1,8 @@
 all:
   children:
-    sausage:
+    backend:
       hosts:
-        10.128.0.155:
+        158.160.50.111:
+    frontend:
+      hosts:
+        158.160.50.111:

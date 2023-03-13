@@ -1,0 +1,30 @@
+# tasks file for backend
+- name: install node 
+  shell: |
+    curl -fsSL https://rpm.nodesource.com/setup_19.x | bash -
+
+- name: Add user
+  user:
+    name: "www-date"
+    create_home: no
+    shell: /sbin/nologin
+
+- name: Creates directory
+  file:
+    path: /var/www-data
+    state: directory
+    mode: '0755'  
+  
+- name: Templaiting
+  template:
+    src: sausage-store-frontend.service
+    dest: /etc/systemd/system/sausage-store-backend.service
+
+- name: Get systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start service
+  service:
+    name: sausage-store-frontend
+    state: running
