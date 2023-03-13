@@ -1,0 +1,5 @@
+all:
+  children:
+    sausage:
+      hosts:
+        10.128.0.155:
