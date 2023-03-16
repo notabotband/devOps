@@ -1,5 +1,6 @@
 java_apt_package: openjdk-16-jdk
 artifact_version: 1.0.422548
+back_user: "ansible"
 nexus_user: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   33363765303938666239656162386139396265666531346561373734623861343739306635653731
