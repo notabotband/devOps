@@ -1,7 +1,7 @@
 resource "yandex_compute_instance" "vm-1" {
   name = var.name
   platform_id = var.platform_id
-  zone        = var.memory
+  zone        = var.zone
 
   resources {
     cores = var.cores

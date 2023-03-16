@@ -1,0 +1,5 @@
+[localhost]
+158.160.42.93
+
+[localhost:vars]
+ansible_connection=local

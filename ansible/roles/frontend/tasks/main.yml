@@ -1,0 +1,73 @@
+# tasks file for backend
+- name: add nodejs apt key
+  become: yes
+  become_user: root
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    state: present
+
+- name: Install the nodejs LTS repos
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: "deb https://deb.nodesource.com/node_19.x focal main"
+    update_cache: yes
+
+- name: Install the nodejs
+  apt:
+    pkg: http-server
+      - nodejs
+    state: present
+
+- name: Add http-server
+  npm:
+    name: http-server
+    global: yes
+
+- name: Add user
+  become: yes
+  user:
+    name: "{{ front_user }}"
+    create_home: no
+    shell: /sbin/nologin
+
+- name: Creates directory
+  file:
+    path: "{{ front_path }}"
+    state: directory
+    group: "{{ front_user }}"
+    owner: "{{ front_user }}"
+    mode: '0755'
+
+- name: Node_artifact from Nexus
+  become: yes
+  become_user: root
+  node_artifact:
+    dest: "{{ front_path }}"
+    repository_url: "https://nexus.praktikum-services.ru/repository/sausage-store-antipov-stanislav-frontend/"
+    group_id: "sausage-store"
+    username: "{{ nexus_user }}"
+    password: "{{ nexus_pass }}"
+    artifact_id: "sausage-store"
+    version: "{{ artifact_version }}"
+
+- name: Unarchive
+  unarchive:
+    src: "var/tmp/sausage-store-{{ artifact_version }}.tar.gz"
+    dist: "{{ front_path }}"
+    copy: no
+
+- name: Templaiting
+  template:
+    src: sausage-store-frontend.service
+    dest: /etc/systemd/system/sausage-store-backend.service
+
+- name: Get systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start service
+  service:
+    name: sausage-store-frontend
+    state: started
+    enabled: true

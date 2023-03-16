@@ -1,7 +1,7 @@
 variable "name" {
   description = "Name"
   type = string
-  default = "chapter5-task2-std-013-59"
+  default = "chapter5-task3-std-013-59"
 }
 
 variable "image_id" {

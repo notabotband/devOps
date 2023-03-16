@@ -1,0 +1,11 @@
+[Unit]
+Description=Frontend start
+
+[Service]
+ExecStart=http-server {{ front_path }}frontend/ -p 8443 --proxy http://158.160.42.93
+User={{ front_user }}
+Restart=always
+StandardOutput=append:/opt/log/sausage-store-frontend.log
+
+[Install]
+WantedBy=multi-user.target

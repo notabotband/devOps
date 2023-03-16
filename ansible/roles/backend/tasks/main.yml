@@ -1,0 +1,47 @@
+- name: Install Java package (Ubuntu/Debian)
+  become: yes
+  apt:
+    name: "{{ java_apt_package }}"
+    state: present
+    update_cache: yes
+
+- name: Add user
+  become: yes
+  user:
+    name: "{{ back_user }}"
+    create_home: no
+    shell: /sbin/nologin
+
+- name: Maven_artifact from Nexus
+  become: yes
+  become_user: root
+  maven_artifact:
+    dest: "/home/ansible"
+    repository_url: "https://nexus.praktikum-services.ru/repository/sausage-store-antipov-stanislav-backend/"
+    group_id: "com.yandex.practicum.devops"
+    username: "{{ nexus_user }}"
+    password: "{{ nexus_pass }}"
+    artifact_id: "sausage-store"
+    version: "{{ artifact_version }}"
+
+- name: Permission
+  ansible.builtin.file
+  path: "/home/ansible/sausage-store.jar"
+  group: "{{ back_user }}"
+  owner: "{{ back_user }}"
+  mode: '0777'
+
+- name: Templaiting
+  template:
+    src: sausage-store-backend.service
+    dest: /etc/systemd/system/sausage-store-backend.service
+
+- name: Get systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start service
+  service:
+    name: sausage-store-backend.service
+    state: started
+    enabled: true
