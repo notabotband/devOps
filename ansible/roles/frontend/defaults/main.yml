@@ -1,4 +1,6 @@
 artifact_version: 1.0.488748
+front_path: /var/www-data
+front_user: www-data
 nexus_user: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   33363765303938666239656162386139396265666531346561373734623861343739306635653731

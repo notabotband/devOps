@@ -1,6 +1,5 @@
 - name: Install Java package (Ubuntu/Debian)
   become: yes
-  become_user: root
   apt:
     name: "{{ java_apt_package }}"
     state: present
@@ -8,7 +7,6 @@
 
 - name: Add user
   become: yes
-  become_user: root
   user:
     name: "ansible"
     create_home: no
@@ -26,6 +24,13 @@
     artifact_id: "sausage-store"
     version: "{{ artifact_version }}"
 
+- name: Permission
+  ansible.builtin.file
+  path: "/home/ansible/sausage-store.jar"
+  group: "ansible"
+  owner: "ansible"
+  mode: '0777'
+
 - name: Templaiting
   template:
     src: sausage-store-backend.service
@@ -39,3 +44,4 @@
   service:
     name: sausage-store-backend.service
     state: started
+    enabled: true
