@@ -1,0 +1,19 @@
+[Unit]
+Description=Sausage-store
+
+[Service]
+User=ansible
+Environment=REPORT_PATH=/log/reports
+Environment=LOG_PATH=/log
+StandardOutput=file:/opt/log/sausage-store-backend.log
+Restart=always
+ExecStart=java \
+-Dmyserver.basePath='/home/ansible/' \
+-Dmyserver.bindAddr='127.0.0.1' \
+-Dmyserver.bindPort='8080' \
+-Dmyserver.hostName='Sausage-store' \
+-jar '/home/ansible/sausage-store.jar'
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

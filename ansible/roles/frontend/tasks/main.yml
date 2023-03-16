@@ -1,20 +1,54 @@
 # tasks file for backend
-- name: install node 
-  shell: |
-    curl -fsSL https://rpm.nodesource.com/setup_19.x | bash -
+- name: add nodejs apt key
+  become: yes
+  become_user: root
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    state: present
+
+- name: Install the nodejs LTS repos
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: "deb https://deb.nodesource.com/node_19.x main"
+    update_cache: yes
+
+- name: Install the nodejs
+  become: yes
+  become_user: root
+  apt:
+    update_cache: yes
+    name: nodejs
+    state: present
 
 - name: Add user
+  become: yes
+  become_user: root
   user:
     name: "www-date"
     create_home: no
     shell: /sbin/nologin
 
 - name: Creates directory
+  become: yes
+  become_user: root
   file:
     path: /var/www-data
     state: directory
-    mode: '0755'  
-  
+    mode: '0755'
+
+- name: Node_artifact from Nexus
+  become: yes
+  become_user: root
+  node_artifact:
+    dest: "/var/www-data"
+    repository_url: "https://nexus.praktikum-services.ru/repository/sausage-store-antipov-stanislav-frontend/"
+    group_id: "sausage-store"
+    username: "{{ nexus_user }}"
+    password: "{{ nexus_pass }}"
+    artifact_id: "sausage-store"
+    version: "{{ artifact_version }}"
+
 - name: Templaiting
   template:
     src: sausage-store-frontend.service
@@ -27,4 +61,4 @@
 - name: Start service
   service:
     name: sausage-store-frontend
-    state: running
+    state: started

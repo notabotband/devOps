@@ -1,0 +1,11 @@
+[Unit]
+Description=Frontend start
+
+[Service]
+ExecStart=http-server /home/www-data/frontend/ -p 8443 --proxy http://localhost:8080
+User=www-data
+Restart=always
+StandardOutput=append:/opt/log/sausage-store-frontend.log
+
+[Install]
+WantedBy=multi-user.target
