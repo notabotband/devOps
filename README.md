@@ -1,6 +1,18 @@
 # infrastructure
 
+### Index optimization task 6.1
+Problematic request -
+```select COUNT(*) from orders o INNER JOIN order_product op ON o.id = op.order_id INNER JOIN product p ON op.product_id = p.id WHERE p.id = 2;```
 
+Composite request
+
+```CREATE INDEX order_product_order_id_product_id ON order_product (order_id, product_id);```
+
+#### Changed the request
+```SELECT COUNT(*) FROM order_product WHERE product_id = 2```
+- Add index product_id
+   
+```CREATE INDEX order_product_product_id ON order_product (product_id);```
 
 ## Getting started
 
