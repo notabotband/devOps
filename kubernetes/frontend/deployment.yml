@@ -35,4 +35,3 @@ spec:
           name: sausagestore-configmap
       imagePullSecrets:
         - name: docker-config-secret
-
