@@ -8,7 +8,6 @@ deploy:
     url: https://antipov-stas-15.k8s.praktikum-services.tech
   before_script:
     - pwd && ls -la
-    - rm ~/.kube/config
     - mkdir -p ~/.kube
     - chmod 700 ~/.kube
     - touch ~/.kube/config
