@@ -18,13 +18,13 @@ spec:
     spec:
       affinity:
         nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-              selector:
-                matchExpressions:
-                  - key: application
-                    operator: In
-                    values:
-                      - front
+          requiredDuringSchedulingIgnoredDuringExecution:
+            labelSelector:
+              matchExpressions:
+                - key: application
+                  operator: In
+                  values:
+                    - front
       containers:
         - name: frontend
           image: gitlab.praktikum-services.ru:5050/std-013-59/sausage-store/sausage-frontend:latest
