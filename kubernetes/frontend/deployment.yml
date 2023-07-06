@@ -14,10 +14,18 @@ spec:
   template:
     metadata:
       labels:
-        app: frontend
+        application: front
     spec:
-      nodeSelector:
-        app: frontend
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            — weight: 80
+              preference:
+                matchExpressions:
+                  - key: application
+                    operator: In
+                    values:
+                      - front
       containers:
         - name: frontend
           image: gitlab.praktikum-services.ru:5050/std-013-59/sausage-store/sausage-frontend:latest
