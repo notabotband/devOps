@@ -1,0 +1,18 @@
+stages:
+  - deploy
+deploy:
+  stage: deploy
+  image: alpine/k8s:1.22.6
+  environment:
+    name: k8s
+    url: https://antipov-stas-15.k8s.praktikum-services.tech
+  before_script:
+    - pwd && ls -la
+    - mkdir -p ~/.kube
+    - chmod 700 ~/.kube
+    - touch ~/.kube/config
+    - chmod 700 ~/.kube/config
+    - cat "$KUBE_CONFIG" > ~/.kube/config
+  script:
+    - kubectl apply -f kubernetes/ --recursive
+    - rm ~/.kube/config
