@@ -4,20 +4,18 @@ kind: Deployment
 metadata:
   name: frontend
   labels:
-    app: frontend
+    application: front
 spec:
   revisionHistoryLimit: 15
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      application: front
   template:
     metadata:
       labels:
         application: front
     spec:
-      nodeSelector:
-        application: front
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
