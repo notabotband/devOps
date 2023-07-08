@@ -16,17 +16,15 @@ spec:
       labels:
         application: front
     spec:
-      nodeSelector:
-        application: front
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-              matchExpressions:
-                - key: application
-                  operator: In
-                  values:
-                    - front
+              - matchExpressions:
+                  - key: application
+                    operator: In
+                    values:
+                      - front
       containers:
         - name: frontend
           image: gitlab.praktikum-services.ru:5050/std-013-59/sausage-store/sausage-frontend:latest
