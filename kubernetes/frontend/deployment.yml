@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: frontend
   labels:
-    application: front
+    app: frontend
 spec:
   revisionHistoryLimit: 15
   replicas: 6
