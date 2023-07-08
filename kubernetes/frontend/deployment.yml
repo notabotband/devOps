@@ -16,6 +16,8 @@ spec:
       labels:
         application: front
     spec:
+      nodeSelector:
+        application: front
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
