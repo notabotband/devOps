@@ -7,7 +7,7 @@ metadata:
     application: front
 spec:
   revisionHistoryLimit: 15
-  replicas: 1
+  replicas: 6
   selector:
     matchLabels:
       application: front
