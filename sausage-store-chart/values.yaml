@@ -41,3 +41,4 @@ frontend:
 global:
   backServiceName: backend
   backServicePort: 8080
+
