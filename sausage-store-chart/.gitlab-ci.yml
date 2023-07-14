@@ -7,9 +7,6 @@ stages:
 
 relese:
   stage: relese
-  image:
-    name: tzar/helm-kubectl
-    entrypoint: ['']
   script:
     - helm package sausage-store-chart
     - curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} ${NEXUS_REPO_URL} --upload-file sausagestore-*.tgz
