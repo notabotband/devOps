@@ -7,6 +7,7 @@ stages:
 
 relese:
   stage: relese
+  image: dtzar/helm-kubectl
   script:
     - helm package sausage-store-chart
     - curl -u ${NEXUS_REPO_USER}:${NEXUS_REPO_PASS} ${NEXUS_REPO_URL} --upload-file sausagestore-*.tgz
@@ -18,6 +19,7 @@ relese:
 
 deploy:
   stage: deploy
+  image: dtzar/helm-kubectl
   script:
     — |
     <...> Kubeconfig create automation <...>
@@ -28,5 +30,4 @@ deploy:
     helm upgrade --install sausagestore \
     --set environment=test \
     --set fqdn="antipov-stas-15.k8s.praktikum-services.tech" \
-    --atomic --timeout 15m \
-    nexus/sausage-store-chart
+    --atomic --timeout 15m
