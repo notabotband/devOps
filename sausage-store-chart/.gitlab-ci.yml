@@ -25,7 +25,7 @@ deploy:
     — |
     <...> Kubeconfig create automation <...>
 
-    helm repo add nexus $NEXUS_REPO_URL
+    helm repo add nexus ${NEXUS_REPO_URL}
     helm repo update
 
     helm upgrade --install sausagestore \
