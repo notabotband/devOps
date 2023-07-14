@@ -35,5 +35,3 @@ deploy:
       --atomic --timeout 15m \
       --kubeconfig .kube/config \
         nexus/sausagestore
-
-
