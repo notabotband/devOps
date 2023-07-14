@@ -9,9 +9,7 @@ helm:
   trigger:
     include:
       - "/sausage-store-chart/.gitlab-ci.yml"
-  only:
-    changes:
-      - sausage-store-chart/**/*
+
 
 #kubernetes:
 #  stage: pipelines
