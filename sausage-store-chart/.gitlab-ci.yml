@@ -36,6 +36,4 @@ deploy:
       --kubeconfig .kube/config \
         nexus/sausagestore
 
-  after_script:
-    - rm .kube/config
 
