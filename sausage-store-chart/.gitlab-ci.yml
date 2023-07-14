@@ -31,3 +31,4 @@ deploy:
     --set environment=test \
     --set fqdn="antipov-stas-15.k8s.praktikum-services.tech" \
     --atomic --timeout 15m
+
