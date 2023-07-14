@@ -10,7 +10,6 @@ helm:
     include:
       - "/sausage-store-chart/.gitlab-ci.yml"
 
-
 #kubernetes:
 #  stage: pipelines
 #  trigger:
