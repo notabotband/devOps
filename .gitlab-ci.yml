@@ -4,11 +4,20 @@ variables:
 stages:
   - pipelines
 
-kubernetes:
+helm:
   stage: pipelines
   trigger:
     include:
-      - "/k8s.gitlab-ci.yml"
+      - "/sausage-store-chart/.gitlab-ci.yml"
   only:
     changes:
-      - kubernetes/**/*
+      - sausage-store-chart/**/*
+
+#kubernetes:
+#  stage: pipelines
+#  trigger:
+#    include:
+#      - "/k8s.gitlab-ci.yml"
+#  only:
+#    changes:
+#      - kubernetes/**/*

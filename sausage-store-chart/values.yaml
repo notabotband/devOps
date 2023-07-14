@@ -5,8 +5,8 @@ backend:
   imagePullPolicy: IfNotPresent
   replicas: 3
   rollingUpdate:
-    maxUnavailable: 2
-    maxSurge: 20%
+      maxUnavailable: 2
+      maxSurge: 20%
   containerPort: 8080
   environment: production
   resources:

@@ -18,11 +18,11 @@ spec:
               service:
                 name: {{ .Chart.Name }}
                 port:
-                  number: {{ .Values.global.backServicePort }}
+                  number: {{ .Values.containerPort }}
           - path: /api
             pathType: Prefix
             backend:
               service:
                 name: {{ .Chart.Name }}
                 port:
-                  number: {{ .Values.global.backServicePort }}
+                  number: {{ .Values.containerPort }}
