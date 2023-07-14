@@ -20,15 +20,22 @@ relese:
 deploy:
   stage: deploy
   image: dtzar/helm-kubectl
+  when: manual
+
+  before_script:
+    - mkdir -p .kube
+    - echo "${KUBE_CONFIG}" | base64 -d > .kube/config
   script:
-    — |
-    <...> Kubeconfig create automation <...>
+    - helm repo add nexus ${NEXUS_REPO_URL}
+    - helm repo update
+    - >
+      helm upgrade --install sausagestore \
+      --set environment=test \
+      --set fqdn="antipov-stas-15.k8s.praktikum-services.tech" \
+      --atomic --timeout 15m \
+      --kubeconfig .kube/config \
+        nexus/sausagestore
 
-    helm repo add nexus ${NEXUS_REPO_URL}
-    helm repo update
-
-    helm upgrade --install sausagestore \
-    --set environment=test \
-    --set fqdn="antipov-stas-15.k8s.praktikum-services.tech" \
-    --atomic --timeout 15m
+  after_script:
+    - rm .kube/config
 
