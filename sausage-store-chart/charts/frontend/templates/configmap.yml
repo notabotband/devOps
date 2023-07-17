@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-configmap
+data:
+  sausagestore.conf: |
+    server {
+
+      listen {{ .Values.containerPort }};
+
+      location / {
+        root   /usr/share/nginx/html;
+        index  index.html;
+        try_files $uri $uri/ /index.html;
+      }
+
+      location /api {
+          proxy_pass http://{{ .Values.global.backServiceName }}:{{ .Values.global.backServicePort }};
+      }
+    }
