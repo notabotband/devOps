@@ -42,9 +42,9 @@ spec:
             - name: "{{ .Chart.Name }}"
               containerPort: {{ .Values.containerPort }}
           volumeMounts:
-          - name: nginx-config
-            mountPath: /etc/nginx/conf.d/sausagestore.conf
-            subPath: sausagestore.conf
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d/sausagestore.conf
+              subPath: sausagestore.conf
       volumes:
         - name: nginx-config
           configMap:
