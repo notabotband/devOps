@@ -9,8 +9,8 @@ appVersion: "latest"
 
 dependencies:
   - name: backend
-    version: 1.1.1
+    version: 1.1.2
   - name: backend-report
-    version: 1.1.1
+    version: 1.1.2
   - name: frontend
-    version: 1.1.1
+    version: 1.1.2
