@@ -48,6 +48,6 @@ spec:
           volumes:
             - name: nginx-config
               configMap:
-                name: "{{ .Chart.Name }}"-configmap
+                name: {{ .Chart.Name }}-configmap
       imagePullSecrets:
         - name: docker-config-secret
