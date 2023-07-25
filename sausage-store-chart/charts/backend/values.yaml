@@ -2,7 +2,7 @@ image: gitlab.praktikum-services.ru:5050/std-013-59/sausage-store/sausage-backen
 tag: "1.0.676023"
 revisionHistoryLimit: 15
 imagePullPolicy: Always
-replicas: 3
+replicas: 1
 rollingUpdate:
     maxUnavailable: 2
     maxSurge: 20%
