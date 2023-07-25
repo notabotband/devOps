@@ -3,7 +3,7 @@ tag: "latest"
 imagePullPolicy: Always
 revisionHistoryLimit: 15
 fqdn: antipov-stas-15.k8s.praktikum-services.tech
-replicas: 1
+replicas: 5
 environment: production
 containerPort: 8080
 
