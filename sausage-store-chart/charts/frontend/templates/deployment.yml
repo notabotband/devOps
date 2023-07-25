@@ -23,7 +23,7 @@ spec:
     metadata:
       labels:
         app: "{{ .Chart.Name }}"
-        application: front
+        application: frontend
     spec:
       affinity:
         nodeAffinity:
@@ -33,7 +33,7 @@ spec:
                   - key: application
                     operator: In
                     values:
-                      - front
+                      - frontend
       containers:
         - name: "{{ .Chart.Name }}"
           image: {{ .Values.image }}:{{ .Values.tag }}
