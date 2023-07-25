@@ -23,14 +23,13 @@ spec:
     metadata:
       labels:
         app: "{{ .Chart.Name }}"
-        application: frontend
     spec:
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: application
+                  - key: app
                     operator: In
                     values:
                       - frontend
@@ -51,4 +50,3 @@ spec:
             name: {{ .Chart.Name }}-configmap
       imagePullSecrets:
         - name: docker-config-secret
-        
