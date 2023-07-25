@@ -51,3 +51,4 @@ spec:
             name: {{ .Chart.Name }}-configmap
       imagePullSecrets:
         - name: docker-config-secret
+        
