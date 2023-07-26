@@ -34,7 +34,7 @@ frontend:
   imagePullPolicy: Always
   revisionHistoryLimit: 15
   fqdn: antipov-stas-15.k8s.praktikum-services.tech
-  replicas: 5
+  replicas: 3
   environment: production
   containerPort: 8080
 

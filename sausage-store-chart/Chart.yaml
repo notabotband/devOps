@@ -4,13 +4,13 @@ type: application
 name: sausagestore
 description: Sausage Store Helm Chart
 
-version: 1.2.5
+version: 1.2.7
 appVersion: "latest"
 
 dependencies:
   - name: backend
-    version: 1.2.5
+    version: 1.2.7
   - name: backend-report
-    version: 1.2.5
+    version: 1.2.7
   - name: frontend
-    version: 1.2.5
+    version: 1.2.7
