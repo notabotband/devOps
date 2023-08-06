@@ -3,7 +3,7 @@ backend:
   tag: "latest"
   revisionHistoryLimit: 15
   imagePullPolicy: Always
-  replicas: 1
+  replicas: 3
   rollingUpdate:
       maxUnavailable: 2
       maxSurge: 20%
