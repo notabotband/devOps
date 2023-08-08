@@ -1,0 +1,44 @@
+---
+groups:
+  - name: Sausage store rules
+    rules:
+      - alert: InstanceDown
+        expr: up{app="backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          project: "sausage store"
+          component: "Backend"
+        annotations:
+          summary: 'Backend errors'
+          description: 'Pods are not available'
+      - alert: Error_500
+        expr: rate(http_server_requests_seconds_count{status="500"}[1m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          project: "sausage store"
+          component: "Backend"
+        annotations:
+          summary: 'Error 500'
+          description: 'Error 500'
+      - alert: DelayMoreThan100ms
+        expr: histogram_quantile(0.95, sum by (le) (rate(http_server_requests_seconds_bucket{method="POST",status=~"2..",uri="/api/orders"}[5m]))) > 0.1
+        for: 1m
+        labels:
+          severity: critical
+          project: "sausage store"
+          component: "Backend"
+        annotations:
+          summary: 'Timeout 100 ms'
+          description: 'Timeout POST url /api/orders 100 ms'
+      - alert: Error_prometheus
+        expr: rate(http_server_requests_seconds_count{status=~"4..",uri="/actuator/prometheus"}[2m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          project: "sausage store"
+          component: "Prometheus"
+        annotations:
+          summary: 'Prometheus'
+          description: 'Prometheus does not respond for 2 minutes'
